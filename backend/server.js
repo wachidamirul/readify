@@ -6,7 +6,10 @@ import bodyParser from "body-parser";
 import { config } from "./config/app.config.js";
 import indexRoutes from "./routes/index.route.js";
 import publicRoutes from "./routes/public.route.js";
+import logger from "./utils/logger.js";
+import morgan from "morgan";
 
+const morganFormat = ":method :url :status :response-time ms";
 const app = express();
 
 // Set middleware to process form data
@@ -38,6 +41,23 @@ app.use(bodyParser.json());
 
 // Set middleware to parse JSON request bodies
 app.use(express.json());
+
+// Set middleware to log HTTP requests
+app.use(
+	morgan(morganFormat, {
+		stream: {
+			write: message => {
+				const logObject = {
+					method: message.split(" ")[0],
+					url: message.split(" ")[1],
+					status: message.split(" ")[2],
+					responseTime: message.split(" ")[3]
+				};
+				logger.info(JSON.stringify(logObject));
+			}
+		}
+	})
+);
 
 // Set middleware to handle routes
 app.use(publicRoutes);
