@@ -1,0 +1,25 @@
+name: readify
+
+services:
+  readify-db:
+    container_name: readify-db
+    image: mongo:7.0.16
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - readify_db_data:/data/db
+      - readify_db_conf:/data/configdb
+    networks:
+      - readify-network
+
+volumes:
+  readify_db_data:
+    name: readify_db_data
+  readify_db_conf:
+    name: readify_db_conf
+
+networks:
+  readify-network:
+    name: readify-network
+    driver: bridge

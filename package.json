@@ -1,0 +1,25 @@
+{
+	"name": "readify",
+	"version": "1.0.0",
+	"description": "Digital Bookstore Application with MERN Stack",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"readify",
+		"Digital Bookstore",
+		"MERN Stack"
+	],
+	"author": {
+		"name": "Wachid Amirul M",
+		"url": "https://github.com/wachidamirul"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wachidamirul/readify.git"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"concurrently": "^9.1.2"
+	}
+}
