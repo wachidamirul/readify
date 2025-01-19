@@ -8,6 +8,7 @@ import indexRoutes from "./routes/index.route.js";
 import publicRoutes from "./routes/public.route.js";
 import logger from "./utils/logger.js";
 import morgan from "morgan";
+import connectDB from "./config/db.config.js";
 
 const morganFormat = ":method :url :status :response-time ms";
 const app = express();
@@ -66,4 +67,5 @@ app.use(config.BASE_PATH, indexRoutes);
 // Start the server and connect to the database
 app.listen(config.PORT, async () => {
 	console.log(`🚀 ~ Server listening on port ${config.PORT} in ${config.NODE_ENV} environment`);
+	await connectDB();
 });
