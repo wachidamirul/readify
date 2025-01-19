@@ -3,7 +3,9 @@
 	"version": "1.0.0",
 	"description": "Digital Bookstore Application with MERN Stack",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"install": "(cd backend && npm install)",
+		"backend": "cd backend && npm run dev",
+		"dev": "concurrently \"npm run backend\""
 	},
 	"keywords": [
 		"readify",
