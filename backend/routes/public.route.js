@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import { HTTPSTATUS } from "../config/app.config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,7 +14,7 @@ publicRoutes.get("^/$|/index(.html)?", (req, res) => {
 });
 
 publicRoutes.all("*", (req, res) => {
-	res.status(404);
+	res.status(HTTPSTATUS.NOT_FOUND);
 	if (req.accepts("html")) {
 		res.sendFile(path.join(__dirname, "..", "public", "404.html"));
 	} else if (req.accepts("json")) {

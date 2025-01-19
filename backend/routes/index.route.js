@@ -1,12 +1,13 @@
 import express from "express";
 import { asyncHandler } from "../utils/async-handler.js";
+import { HTTPSTATUS } from "../config/app.config.js";
 
 const indexRoutes = express.Router();
 
 indexRoutes.get(
 	`/`,
 	asyncHandler(async (req, res) => {
-		return res.status(200).json({
+		return res.status(HTTPSTATUS.OK).json({
 			message: "Digital Bookstore API"
 		});
 	})
