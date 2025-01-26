@@ -5,7 +5,7 @@ import session from "cookie-session";
 import bodyParser from "body-parser";
 import { config } from "./config/app.config.js";
 import indexRoutes from "./routes/index.route.js";
-import publicRoutes from "./routes/public.route.js";
+import errorRoutes from "./routes/error.route.js";
 import logger from "./utils/logger.js";
 import morgan from "morgan";
 import connectDB from "./config/db.config.js";
@@ -61,8 +61,8 @@ app.use(
 );
 
 // Set middleware to handle routes
-app.use(publicRoutes);
 app.use(config.BASE_PATH, indexRoutes);
+app.use("/", errorRoutes);
 
 // Start the server and connect to the database
 app.listen(config.PORT, async () => {

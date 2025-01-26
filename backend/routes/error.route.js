@@ -5,15 +5,15 @@ import { HTTPSTATUS } from "../config/app.config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicRoutes = express.Router();
+const errorRoutes = express.Router();
 
-publicRoutes.use(express.static(path.join(__dirname, "..", "public")));
+errorRoutes.use(express.static(path.join(__dirname, "..", "public")));
 
-publicRoutes.get("^/$|/index(.html)?", (req, res) => {
+errorRoutes.get("^/$|/index(.html)?", (req, res) => {
 	res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
-publicRoutes.all("*", (req, res) => {
+errorRoutes.all("*", (req, res) => {
 	res.status(HTTPSTATUS.NOT_FOUND);
 	if (req.accepts("html")) {
 		res.sendFile(path.join(__dirname, "..", "public", "404.html"));
@@ -24,4 +24,4 @@ publicRoutes.all("*", (req, res) => {
 	}
 });
 
-export default publicRoutes;
+export default errorRoutes;
