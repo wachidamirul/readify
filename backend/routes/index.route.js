@@ -1,6 +1,6 @@
 import express from "express";
 import { asyncHandler } from "../utils/async-handler.js";
-import { HTTPSTATUS } from "../config/app.config.js";
+import { HTTPSTATUS } from "../config/http.config.js";
 
 const indexRoutes = express.Router();
 

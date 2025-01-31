@@ -8,6 +8,7 @@ import indexRoutes from "./routes/index.route.js";
 import errorRoutes from "./routes/error.route.js";
 import logger from "./utils/logger.js";
 import morgan from "morgan";
+import helmet from "helmet";
 import connectDB from "./config/db.config.js";
 
 const morganFormat = ":method :url :status :response-time ms";
@@ -29,7 +30,7 @@ app.use(
 	session({
 		name: "session",
 		keys: [config.SESSION_SECRET],
-		maxAge: 24 * 60 * 60 * 1000,
+		maxAge: config.SESSION_EXPIRES_IN,
 		secure: config.NODE_ENV === "production",
 		httpOnly: true,
 		sameSite: "lax"
@@ -60,12 +61,20 @@ app.use(
 	})
 );
 
+// Set middleware to secure the app with HTTP headers
+app.use(
+	helmet({
+		crossOriginResourcePolicy: false
+	})
+);
+
 // Set middleware to handle routes
 app.use(config.BASE_PATH, indexRoutes);
 app.use("/", errorRoutes);
 
 // Start the server and connect to the database
-app.listen(config.PORT, async () => {
-	console.log(`🚀 ~ Server listening on port ${config.PORT} in ${config.NODE_ENV} environment`);
-	await connectDB();
+await connectDB().then(() => {
+	app.listen(config.PORT, () => {
+		console.log(`🚀 ~ Server listening on port ${config.PORT} in ${config.NODE_ENV} environment`);
+	});
 });

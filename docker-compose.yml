@@ -6,7 +6,7 @@ services:
     image: mongo:7.0.16
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "1276:27017"
     volumes:
       - readify_db_data:/data/db
       - readify_db_conf:/data/configdb
