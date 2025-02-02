@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "Digital Bookstore Application with MERN Stack",
 	"scripts": {
+		"seed": "cd backend && node seeders/user.seeder.js",
 		"install": "(cd backend && npm install)",
 		"backend": "cd backend && npm run dev",
 		"dev": "concurrently \"npm run backend\""

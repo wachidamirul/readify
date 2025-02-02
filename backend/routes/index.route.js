@@ -1,6 +1,7 @@
 import express from "express";
 import { asyncHandler } from "../utils/async-handler.js";
 import { HTTPSTATUS } from "../config/http.config.js";
+import authRoutes from "./auth.route.js";
 
 const indexRoutes = express.Router();
 
@@ -12,5 +13,7 @@ indexRoutes.get(
 		});
 	})
 );
+
+indexRoutes.use("/auth", authRoutes);
 
 export default indexRoutes;
