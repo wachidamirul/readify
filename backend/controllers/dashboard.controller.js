@@ -1,3 +1,6 @@
+import Book from "../models/book.model.js";
+import Order from "../models/order.model.js";
+
 const dashboard = async (req, res) => {
 	try {
 		// 1. Total number of orders
@@ -36,7 +39,6 @@ const dashboard = async (req, res) => {
 			},
 			{ $sort: { _id: 1 } }
 		]);
-
 		// Result summary
 		return res
 			.status(200)
