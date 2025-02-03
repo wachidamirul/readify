@@ -19,22 +19,23 @@ app.use(express.urlencoded({ extended: true }));
 
 // Use CORS for Cross Origin Resource Sharing
 app.use(
-	cors({
-		origin: config.FRONTEND_ORIGIN,
-		credentials: true
-	})
+  cors({
+    origin: config.FRONTEND_ORIGIN,
+    credentials: true,
+    optionsSuccessStatus: 200
+  })
 );
 
 // Set middleware to manage sessions
 app.use(
-	session({
-		name: "session",
-		keys: [config.SESSION_SECRET],
-		maxAge: config.SESSION_MAX_AGE,
-		secure: config.NODE_ENV === "production",
-		httpOnly: true,
-		sameSite: "lax"
-	})
+  session({
+    name: "session",
+    keys: [config.SESSION_SECRET],
+    maxAge: config.SESSION_MAX_AGE,
+    secure: config.NODE_ENV === "production",
+    httpOnly: true,
+    sameSite: "lax"
+  })
 );
 
 // Set middleware to parse JSON and urlencoded request bodies
@@ -46,26 +47,26 @@ app.use(express.json());
 
 // Set middleware to log HTTP requests
 app.use(
-	morgan(morganFormat, {
-		stream: {
-			write: message => {
-				const logObject = {
-					method: message.split(" ")[0],
-					url: message.split(" ")[1],
-					status: message.split(" ")[2],
-					responseTime: message.split(" ")[3]
-				};
-				logger.info(JSON.stringify(logObject));
-			}
-		}
-	})
+  morgan(morganFormat, {
+    stream: {
+      write: message => {
+        const logObject = {
+          method: message.split(" ")[0],
+          url: message.split(" ")[1],
+          status: message.split(" ")[2],
+          responseTime: message.split(" ")[3]
+        };
+        logger.info(JSON.stringify(logObject));
+      }
+    }
+  })
 );
 
 // Set middleware to secure the app with HTTP headers
 app.use(
-	helmet({
-		crossOriginResourcePolicy: false
-	})
+  helmet({
+    crossOriginResourcePolicy: false
+  })
 );
 
 // Set middleware to handle routes
@@ -74,7 +75,7 @@ app.use("/", errorRoutes);
 
 // Start the server and connect to the database
 await connectDB().then(() => {
-	app.listen(config.PORT, () => {
-		console.log(`🚀 ~ Server listening on port ${config.PORT} in ${config.NODE_ENV} environment`);
-	});
+  app.listen(config.PORT, () => {
+    console.log(`🚀 ~ Server listening on port ${config.PORT} in ${config.NODE_ENV} environment`);
+  });
 });

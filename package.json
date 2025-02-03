@@ -1,31 +1,29 @@
 {
-	"name": "readify",
-	"version": "1.0.0",
-	"description": "Digital Bookstore Application with MERN Stack",
-	"scripts": {
-		"seed": "cd backend && node seeders/user.seeder.js",
-		"install": "(cd backend && npm install) && (cd frontend && npm install)",
-		"backend": "cd backend && npm run dev",
-		"frontend": "cd frontend && npm run dev",
-		"dev": "concurrently \"npm run backend\" \"npm run frontend\""
-	},
-	"keywords": [
-		"readify",
-		"Digital Bookstore",
-		"MERN Stack"
-	],
-	"author": {
-		"name": "Wachid Amirul M",
-		"url": "https://github.com/wachidamirul"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/wachidamirul/readify.git"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"concurrently": "^9.1.2",
-		"morgan": "^1.10.0",
-		"winston": "^3.17.0"
-	}
+  "name": "readify",
+  "version": "1.0.0",
+  "description": "Digital Bookstore Application with MERN Stack",
+  "scripts": {
+    "seed": "cd backend && node seeders/user.seeder.js",
+    "install": "(cd backend && npm install) && (cd frontend && npm install)",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "keywords": [
+    "readify",
+    "Digital Bookstore",
+    "MERN Stack"
+  ],
+  "author": {
+    "name": "Wachid Amirul M",
+    "url": "https://github.com/wachidamirul"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wachidamirul/readify.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
